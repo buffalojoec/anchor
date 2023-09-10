@@ -12,7 +12,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=14.0.0"
   },
   "scripts": {
     "build": "tsc",
@@ -21,10 +21,12 @@
   },
   "dependencies": {
     "bn.js": "^5.1.2",
-    "buffer-layout": "^1.2.0"
+    "buffer-layout": "^1.2.0",
+    "@metaplex-foundation/umi-serializers": "^0.8.5"
   },
   "peerDependencies": {
-    "@solana/web3.js": "^1.68.0"
+    "@solana/web3.js": "^1.68.0",
+    "web3js-experimental": "npm:@solana/web3.js@2.0.0-experimental.e09b513"
   },
   "files": [
     "dist"

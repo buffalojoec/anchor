@@ -8,8 +8,9 @@ import {
   u8,
   union,
 } from "buffer-layout";
-import { PublicKey } from "@solana/web3.js";
+import { Base58EncodedAddress } from "web3js-experimental";
 import BN from "bn.js";
+import { base58 } from "@metaplex-foundation/umi-serializers";
 
 export {
   u8,
@@ -120,11 +121,11 @@ class WrappedLayout<T, U> extends LayoutCls<U> {
   }
 }
 
-export function publicKey(property?: string): Layout<PublicKey> {
+export function publicKey(property?: string): Layout<Base58EncodedAddress> {
   return new WrappedLayout(
     blob(32),
-    (b: Buffer) => new PublicKey(b),
-    (key: PublicKey) => key.toBuffer(),
+    (b: Buffer) => base58.deserialize(b)[0] as Base58EncodedAddress,
+    (key: Base58EncodedAddress) => Buffer.from(base58.serialize(key)),
     property
   );
 }
